@@ -47,7 +47,7 @@ In the code chunk below, load in the packages necessary for your analysis. You s
 
 ```{r}
 #| label: setup
-
+library(tidyverse)
 ```
 
 # Part 2: Data Context
@@ -85,11 +85,15 @@ surveys <- read_csv("data/surveys.csv", show_col_types = FALSE)
 
 **1. What are the dimensions (# of rows and columns) of these data?**
 
-<!-- Run the commented code in the load-data chunk to address this question!  -->
+```{r}
+glimpse(surveys)
+```
+
+Rows: 30,463, Columns: 15
 
 **2. What are the data types of the variables in this dataset?**
 
-<!-- Run the commented code in the load-data chunk to address this question!  -->
+Numeric and categorical
 
 # Part 3: Exploratory Data Analysis with **`ggplot2`**
 
@@ -114,7 +118,12 @@ Let's get started!
 
 ```{r}
 #| label: scatterplot
-
+#scatterplot of relationship between weight and hind foot length
+ggplot(data = surveys,
+       mapping = aes(x =weight, y = hindfoot_length,)) +
+  geom_point(alpha=0.2)+
+  facet_wrap(~species)+
+  labs(subtitle = "Hind Foot Length", y= "")
 ```
 
 We can see there are **a lot** of points plotted on top of each other. Let's try and modify this plot to extract more information from it.
