@@ -156,7 +156,12 @@ It takes a larger cognitive load to read text that is rotated. It is common prac
 
 ```{r}
 #| label: boxplot
-
+ggplot(data = surveys,
+       mapping = aes(x =weight, y = hindfoot_length,)) +
+  geom_boxplot()+
+  facet_wrap(~species)+
+  labs(subtitle = "Hind Foot Length", y= "") +
+  geom_jitter(alpha=0.2, color= "springgreen4")
 
 ```
 
