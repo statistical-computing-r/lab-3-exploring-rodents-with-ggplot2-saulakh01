@@ -158,9 +158,9 @@ It takes a larger cognitive load to read text that is rotated. It is common prac
 #| label: boxplot
 ggplot(data = surveys,
        mapping = aes(x =weight, y = hindfoot_length,)) +
-  geom_boxplot()+
+  geom_boxplot(outlier.shape=NA)+
   facet_wrap(~species)+
-  labs(subtitle = "Hind Foot Length", y= "") +
+  labs(subtitle = "Hind Foot Length", y= "", axis.text.y=45) +
   geom_jitter(alpha=0.2, color= "springgreen4")
 
 ```
@@ -204,6 +204,13 @@ Some people (and journals) prefer for boxplots to be stacked with a specific ori
 
 ```{r}
 #| label: rotated-boxplot
+ggplot(data = surveys,
+       mapping = aes(x =weight, y = hindfoot_length,)) +
+  geom_boxplot(outlier.shape=NA)+
+  facet_wrap(~species)+
+  labs(subtitle = "Hind Foot Length", y= "", axis.text.y=45) +
+  geom_jitter(alpha=0.2, color= "springgreen4")+
+  coord_flip() # Flips the axes
 
 ```
 
